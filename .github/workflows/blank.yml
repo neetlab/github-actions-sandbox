@@ -10,10 +10,15 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+        
       - name: Echo when released
         if: github.event.prerelease
         run: echo "Package was prelereased"
         
-      - name: Echo when released
-        if: ${{ !github.event.prerelease }}
-        run: echo "Package was released"
+#       - name: Echo when released
+#         if: ${{ github.event.prerelease != true }}
+#         run: echo "Package was released"
