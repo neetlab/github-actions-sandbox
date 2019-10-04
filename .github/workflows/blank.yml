@@ -11,4 +11,9 @@ jobs:
       - uses: actions/checkout@v1
 
       - name: Echo when released
-        run: echo ${{ github.event }}
+        if: github.event.prerelease
+        run: echo "Package was prelereased"
+        
+      - name: Echo when released
+        if: ${{ !github.event.prerelease }}
+        run: echo "Package was released"
