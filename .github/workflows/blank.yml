@@ -16,9 +16,9 @@ jobs:
         run: echo "$GITHUB_CONTEXT"
         
       - name: Echo when prelereased
-        if: github.event.prerelease
+        if: github.event.release.prerelease
         run: echo Package was prelereased
         
       - name: Echo when released
-        if: github.event.prerelease != true
+        if: github.event.release.prerelease != true
         run: echo Package was released
