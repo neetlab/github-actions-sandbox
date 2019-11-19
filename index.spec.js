@@ -1,5 +1,5 @@
 const greeting = require('./');
 
 test('salutates properly', () => {
-  expect(greeting('Ryo')).toBe('Hello Ryo!');
+  expect(greeting('Ryo')).toBe('This breaks');
 });
