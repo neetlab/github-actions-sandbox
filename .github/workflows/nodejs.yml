@@ -1,0 +1,35 @@
+name: Node CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: yarn install and test
+      run: |
+        yarn --frozen-lockfile
+        yarn run jest
+      env:
+        CI: true
+
+    - name: Change lights red
+      if: failure()
+      run: curl -X POST https://maker.ifttt.com/trigger/failure/with/key/$IFTTT_WEBHOOK_KEY
+      
+    - name: Change lights orange
+      if: success()
+      run: curl -X POST https://maker.ifttt.com/trigger/success/with/key/$IFTTT_WEBHOOK_KEY
