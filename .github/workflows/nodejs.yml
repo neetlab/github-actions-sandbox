@@ -34,6 +34,6 @@ jobs:
       
     - name: Change lights orange
       if: success()
-      run: curl -X POST https://maker.ifttt.com/trigger/failure/with/key/${IFTTT_WEBHOOK_KEY}
+      run: curl -X POST https://maker.ifttt.com/trigger/success/with/key/${IFTTT_WEBHOOK_KEY}
       env:
         IFTTT_WEBHOOK_KEY: ${{ secrets.IFTTT_WEBHOOK_KEY }}
