@@ -28,12 +28,12 @@ jobs:
 
     - name: Change lights red
       if: failure()
-      uses: wei/curl@master
-      with:
-        args: -X POST https://maker.ifttt.com/trigger/failure/with/key/${IFTTT_WEBHOOK_KEY}
+      run: curl -X POST https://maker.ifttt.com/trigger/failure/with/key/${IFTTT_WEBHOOK_KEY}
+      env:
+        IFTTT_WEBHOOK_KEY: ${{ secrets.IFTTT_WEBHOOK_KEY }}
       
     - name: Change lights orange
       if: success()
-      uses: wei/curl@master
-      with:
-        args: -X POST https://maker.ifttt.com/trigger/failure/with/key/${IFTTT_WEBHOOK_KEY}
+      run: curl -X POST https://maker.ifttt.com/trigger/failure/with/key/${IFTTT_WEBHOOK_KEY}
+      env:
+        IFTTT_WEBHOOK_KEY: ${{ secrets.IFTTT_WEBHOOK_KEY }}
